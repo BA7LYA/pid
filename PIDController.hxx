@@ -59,13 +59,13 @@ public:
 		// error value
 		float nowErrorValue = setPoint - processVariable;
 
-		// Calculate P term
+		// calculate P term
 		float pTerm = Kp * nowErrorValue;
 
-		// Calculate I term
+		// calculate I term
 		float iTerm = historicalIntegral + Ki * nowErrorValue * dt;
 
-		// Calculate D term, taking care to not divide by zero
+		// calculate D term
 		float dTerm = Kd * ((nowErrorValue - lastErrorValue) / dt);
 
 		// update error value
