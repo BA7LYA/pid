@@ -1,0 +1,89 @@
+{
+    "version": 7,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 3
+    },
+    "configurePresets": [
+        {
+            "name": "MSVC-2022-x64-Ninja",
+            "displayName": "MSVC-2022-x64-Ninja",
+            "generator": "Ninja Multi-Config",
+            "toolset": {
+                "value": "v143,host=x64",
+                "strategy": "external"
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_CONFIGURATION_TYPES": "Debug;Release;RelWithDebInfo;MinSizeRel",
+                "CMAKE_C_COMPILER": "cl",
+                "CMAKE_CXX_COMPILER": "cl",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_MAKE_PROGRAM": "ninja",
+                "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/thirdparty/vcpkg/scripts/buildsystems/vcpkg.cmake"
+            },
+            "warnings": {
+                "dev": false,
+                "systemVars": true,
+                "uninitialized": true,
+                "unusedCli": true,
+                "deprecated": true
+            },
+            "errors": {
+                "dev": false,
+                "deprecated": true
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "Debug",
+            "description": "",
+            "displayName": "",
+            "configuration": "Debug",
+            "configurePreset": "MSVC-2022-x64-Ninja",
+            "cleanFirst": false,
+            "jobs": 12
+        },
+        {
+            "name": "Release",
+            "description": "",
+            "displayName": "",
+            "configuration": "Release",
+            "configurePreset": "MSVC-2022-x64-Ninja",
+            "cleanFirst": false,
+            "jobs": 12
+        },
+        {
+            "name": "RelWithDebInfo",
+            "description": "",
+            "displayName": "",
+            "configuration": "RelWithDebInfo",
+            "configurePreset": "MSVC-2022-x64-Ninja",
+            "cleanFirst": false,
+            "jobs": 12
+        },
+        {
+            "name": "MinSizeRel",
+            "description": "",
+            "displayName": "",
+            "configuration": "MinSizeRel",
+            "configurePreset": "MSVC-2022-x64-Ninja",
+            "cleanFirst": false,
+            "jobs": 12
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "Test",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "MSVC-2022-x64-Ninja"
+        }
+    ]
+}
