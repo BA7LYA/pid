@@ -210,7 +210,7 @@ TabWidth: 4
 TypenameMacros: # ???
   - STACK_OF
   - LIST
-UseTab: AlignWithSpaces
+UseTab: Never
 WhitespaceSensitiveMacros: # ???
   - STRINGIZE
   - PP_STRINGIZE
