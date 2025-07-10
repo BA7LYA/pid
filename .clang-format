@@ -1,42 +1,50 @@
 ---
 AccessModifierOffset: -4
 AlignAfterOpenBracket: BlockIndent
-AlignArrayOfStructures: Right
+AlignArrayOfStructures: Left
 AlignConsecutiveAssignments:
-  Enabled: true
+  Enabled: false
   AcrossEmptyLines: false
-  AcrossComments: true
+  AcrossComments: false
   AlignCompound: true
   PadOperators: true
 AlignConsecutiveBitFields:
   Enabled: true
   AcrossEmptyLines: false
-  AcrossComments: true
+  AcrossComments: false
 AlignConsecutiveDeclarations:
-  Enabled: true
+  Enabled: false
   AcrossEmptyLines: false
-  AcrossComments: true
+  AcrossComments: false
 AlignConsecutiveMacros:
   Enabled: true
   AcrossEmptyLines: false
+  AcrossComments: false
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AcrossEmptyLines: true
   AcrossComments: true
+  AlignCaseArrows: true
+  AlignCaseColons: false
 AlignEscapedNewlines: Left
 AlignOperands: AlignAfterOperator # dont work
 AlignTrailingComments:
   Kind: Always
-  OverEmptyLines: 2
+  OverEmptyLines: 0
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false # <==
-AllowShortBlocksOnASingleLine: Empty
+AllowShortBlocksOnASingleLine: true
+AllowShortCaseExpressionOnASingleLine: true
 AllowShortCaseLabelsOnASingleLine: true
+AllowShortCompoundRequirementOnASingleLine: true
 AllowShortEnumsOnASingleLine: true
-AllowShortFunctionsOnASingleLine: Empty # <==
-AllowShortIfStatementsOnASingleLine: Never
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: true
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
-AlwaysBreakAfterReturnType: None
+AllowShortNamespacesOnASingleLine: true
 AlwaysBreakBeforeMultilineStrings: true
-AlwaysBreakTemplateDeclarations: Yes
+AlwaysBreakTemplateDeclarations: Yes # deprecated
 AttributeMacros:
   - __capability
   - __output
@@ -44,25 +52,27 @@ AttributeMacros:
 BinPackArguments: false
 BinPackParameters: false
 BitFieldColonSpacing: Before
+BracedInitializerIndentWidth: 4
 BraceWrapping:
   AfterCaseLabel: true
-  AfterClass: true
-  AfterControlStatement: Always
-  AfterEnum: true
-  AfterFunction: true
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
   AfterNamespace: false
-  AfterStruct: true
-  AfterUnion: true
+  AfterStruct: false
+  AfterUnion: false
   AfterExternBlock: false
   BeforeCatch: true
   BeforeElse: true
   BeforeLambdaBody: true
   BeforeWhile: true
   # IndentBraces: true # devil !!!
-  SplitEmptyFunction: true
+  SplitEmptyFunction: false
   SplitEmptyRecord: true
   SplitEmptyNamespace: true
 BreakAfterAttributes: Always
+BreakAfterReturnType: Automatic
 BreakArrays: false
 BreakBeforeBinaryOperators: All
 BreakBeforeBraces: Custom
@@ -72,7 +82,8 @@ BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
 BreakStringLiterals: true
-ColumnLimit: 80
+BreakTemplateDeclarations: Yes
+ColumnLimit: 100
 CommentPragmas: "^ IWYU pragma:" # ???
 CompactNamespaces: false
 ConstructorInitializerIndentWidth: 4
@@ -121,13 +132,16 @@ InsertBraces: true
 InsertNewlineAtEOF: true
 InsertTrailingCommas: None
 IntegerLiteralSeparator:
-  Binary: 4
-  BinaryMinDigits: 8
-  Decimal: 4
-  DecimalMinDigits: 5
-  Hex: 2
-  HexMinDigits: 6
-KeepEmptyLinesAtTheStartOfBlocks: false
+  Binary: -1 # 4
+  BinaryMinDigits: -1 # 8
+  Decimal: -1 # 4
+  DecimalMinDigits: -1 # 5
+  Hex: -1 # 2
+  HexMinDigits: -1 # 6
+KeepEmptyLines:
+  AtEndOfFile: true
+  AtStartOfBlock: false
+  AtStartOfFile: false
 LambdaBodyIndentation: Signature
 Language: Cpp
 LineEnding: CRLF
@@ -150,13 +164,6 @@ PenaltyIndentedWhitespace: 0
 PointerAlignment: Left
 PPIndentWidth: -1
 QualifierAlignment: Left
-# QualifierOrder: # !!??
-#   - inline
-#   - static
-#   - type
-#   - const
-#   - volatile
-# RawStringFormats: # TODO
 ReferenceAlignment: Pointer
 ReflowComments: true
 RequiresClausePosition: OwnLine
@@ -188,17 +195,17 @@ SpaceBeforeParensOptions:
   BeforeNonEmptyParentheses: false
 SpaceBeforeRangeBasedForLoopColon: true
 SpaceBeforeSquareBrackets: false
-SpaceInEmptyBlock: false
-SpaceInEmptyParentheses: false
-SpacesBeforeTrailingComments: 2
+SpacesBeforeTrailingComments: 1
 SpacesInAngles: Never
 SpacesInConditionalStatement: false
 SpacesInContainerLiterals: false
 SpacesInCStyleCastParentheses: false
+SpaceInEmptyBlock: false
+SpaceInEmptyParentheses: false
 SpacesInLineCommentPrefix:
   Minimum: 1
   Maximum: 1
-SpacesInParentheses: false
+SpacesInParens: Never
 SpacesInSquareBrackets: false
 Standard: Latest
 StatementAttributeLikeMacros:
