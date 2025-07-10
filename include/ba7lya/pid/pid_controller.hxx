@@ -11,6 +11,8 @@
 
 #include <chrono>
 
+namespace ba7lya::pid {
+
 ///
 /// @brief PID Controller
 ///
@@ -30,20 +32,22 @@ public:
         , last_error_value_(last_error_value)
         , last_time_(std::chrono::high_resolution_clock::now()) {}
 
-public:
     void set_gain(const float kp, const float ki, const float kd) {
         kp_ = kp;
         ki_ = ki;
         kd_ = kd;
     }
 
-    float step(const float set_point, const float process_variable) {
+    float compute(const float set_point, const float process_variable) {
         // now time
         auto now_time = std::chrono::high_resolution_clock::now();
 
         // delta time
         std::chrono::duration<float> delta_time = now_time - last_time_;
         float dt = delta_time.count();
+
+        // 时间差保护
+        if (dt <= 0.0001f) { dt = 0.0001f; }
 
         // error value
         float now_error_value = set_point - process_variable;
@@ -57,8 +61,10 @@ public:
         // calculate D term
         float d_term = kd_ * ((now_error_value - last_error_value_) / dt);
 
-        // update error value
+        // 更新状态
+        historical_integral_ = i_term;
         last_error_value_ = now_error_value;
+        last_time_ = now_time;
 
         // return u(t)
         return p_term + i_term + d_term;
@@ -77,3 +83,5 @@ private:
     // the Time when calc last time
     std::chrono::time_point<std::chrono::high_resolution_clock> last_time_;
 };
+
+} // namespace ba7lya::pid

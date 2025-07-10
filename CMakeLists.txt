@@ -12,7 +12,7 @@ enable_testing()
 
 # --- build options ---
 option(${PROJECT_NAME}_BUILD_BENCHMARK "Build the benchmark" OFF)
-option(${PROJECT_NAME}_BUILD_DEMO "Build demo programs" OFF)
+option(${PROJECT_NAME}_BUILD_EXAMPLES "Build demo programs" ON)
 option(${PROJECT_NAME}_BUILD_TEST "Build Test" OFF)
 
 # --- dependencies ---
@@ -50,8 +50,8 @@ if(${PROJECT_NAME}_BUILD_BENCHMARK)
 endif()
 
 # --- demo ---
-if(${PROJECT_NAME}_BUILD_DEMO)
-    add_subdirectory(demo)
+if(${PROJECT_NAME}_BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
 
 # --- unit tests ---

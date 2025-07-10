@@ -1,14 +1,8 @@
 {
   "builtin-baseline": "8ebda5cd30c3c88e62671b5f1a07889008c0863b",
   "dependencies": [
-    {
-      "name": "benchmark"
-    },
-    {
-      "name": "gtest"
-    },
-    {
-      "name": "ode"
-    }
+    "benchmark",
+    "gtest",
+    "ode"
   ]
 }
