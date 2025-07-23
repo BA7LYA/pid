@@ -9,40 +9,41 @@
 
 #include <chrono>
 #include <iostream>
+#include <stdexcept>
 
 #include "ba7lya/pid/pid_controller.hxx"
+#include "first_order_system.hxx"
+#include "utility.hxx"
 
-///
-/// @brief 简单的一阶系统模型
-/// @brief 状态更新公式：state += control_input * 0.1
-/// @brief 状态值范围：[0, 10]
-/// @brief 控制输入范围：[-10, 10]
-/// @brief 控制器参数：Kp=0.5, Ki=0.1, Kd=0.2
-/// @brief 目标状态值：10
-/// @brief 模拟步数：1000
-///
-class system_model {
-public:
-    float update(const float control_input) {
-        state_ += control_input * 0.1f;
-        return state_;
+using namespace ba7lya::pid;
+
+int main(int argc, char* argv[]) {
+    // 参数个数校验
+    if (argc != 4) {
+        std::cerr << "Usage: " << argv[0] << " <Kp> <Ki> <Kd>\n";
+        return 1;
     }
 
-    void reset() { state_ = 0; }
+    // 参数解析
+    auto args = parse_args(argc, argv);
+    double Kp = args[0];
+    double Ki = args[1];
+    double Kd = args[2];
 
-    float state() const { return state_; }
+    // 参数范围校验
+    if (Kp < 0 || Kp > 100 || Ki < 0 || Ki > 100 || Kd < 0 || Kd > 100) {
+        std::cerr << "error: Kp, Ki, Kd out of range\n";
+        throw std::runtime_error("error: Kp, Ki, Kd out of range");
+        return 1;
+    }
 
-private:
-    float state_ = 0;
-};
+    // 创建PID控制器
+    pid_controller pid(Kp, Ki, Kd);
 
-int main() {
-    // 创建PID控制器 (Kp=0.5, Ki=0.1, Kd=0.2)
-    ba7lya::pid::pid_controller pid(2.0f, 0.1f, 0.0f);
-
-    system_model system;
+    // 创建系统
+    first_order_system system(2, 0.5, 0.01);
     const float target = 10.0f; // 目标状态值
-    const int steps = 1000;     // 模拟步数
+    const int steps = 30;       // 模拟步数
 
     std::cout << "pid controller simulation:\n";
     std::cout << "target: " << target << "\n";

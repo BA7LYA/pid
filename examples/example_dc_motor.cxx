@@ -7,7 +7,14 @@
 /// @copyright Copyright (c) 2025
 ///
 
-#include "dc_motor.hxx"
+class dc_motor {
+public:
+    dc_motor() {}
+
+    ~dc_motor() {}
+
+private:
+};
 
 int main(int argc, const char* argv[]) {
     /* code */
